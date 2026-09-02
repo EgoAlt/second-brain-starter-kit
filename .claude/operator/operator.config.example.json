@@ -1,0 +1,23 @@
+{
+  "_comment": "Copy to operator.config.json (gitignored) and edit. caps.run_minutes is enforced by the wrapper as a wall-clock timeout; the other caps are instructions the prompt follows. Folder names are not configurable: they are constants at the top of each script in .claude/scripts/ and in the prompt.",
+  "caps": {
+    "run_minutes": 20,
+    "mechanical_fixes_per_run": 10,
+    "files_read_per_run": 50,
+    "files_written_per_run": 20
+  },
+  "cadence": {
+    "human": "daily, morning",
+    "cron": "0 7 * * *"
+  },
+  "backup": {
+    "enabled": false,
+    "_comment": "When true, run-operator.sh (not the agent) commits exactly the files the run changed and pushes HEAD to refs/heads/<branch> on <remote>, after the agent has exited. The remote must be private. Leave false until you have verified a run by hand.",
+    "remote": "origin",
+    "branch": "main"
+  },
+  "signature": {
+    "enabled": true,
+    "text": "Vault Operator, last edited: {timestamp}"
+  }
+}

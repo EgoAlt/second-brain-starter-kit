@@ -1,0 +1,54 @@
+# OS files
+.DS_Store
+Thumbs.db
+Icon?
+
+# Obsidian workspace state (changes per machine) and plugin binaries
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/plugins/*/main.js
+.obsidian/plugins/*/styles.css
+.obsidian/themes/*/theme.css
+
+# Secrets. Deleting a committed secret does not remove it from git history:
+# rotate it, then rewrite history if the repo was ever pushed.
+.env
+.env.*
+*.key
+*.pem
+credentials/
+secrets/
+
+# Obsidian plugin state: some plugins store API keys in plaintext here
+.obsidian/plugins/*/data.json
+
+# Local tooling config and state that never belongs in a shared repo
+.claude/settings.local.json
+.claude/operator/operator.config.json
+.claude/.operator-runs/
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Logs
+*.log
+
+# Ephemeral hook state (sentinel files written by hooks at tool time)
+.claude/.hook-state/
+
+# Same-day override markers armed by `touch`. Never commit these: a checkout
+# would re-stamp the mtime and silently re-arm the override.
+.claude/daily-overwrite-approved
+
+# Inbox/ is staging for un-ingested material and may hold sensitive files.
+# Nothing in it reaches a commit; its conventions files stay tracked.
+Inbox/*
+!Inbox/README.md
+!Inbox/CLAUDE.md
+
+# raw/ folders hold immutable source material once ingested. Markdown stays
+# tracked (small, diffs cleanly); binaries (PDFs, images, media) are excluded.
+**/raw/**
+!**/raw/**/
+!**/raw/**/*.md

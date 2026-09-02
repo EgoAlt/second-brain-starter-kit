@@ -1,0 +1,28 @@
+name: selfchecks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  selfchecks:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python: ["3.9", "3.12"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: git identity for the temporary-repo tests
+        run: git config --global user.email ci@example.invalid && git config --global user.name ci
+      - name: selfchecks, policy test, wrapper test, vault health
+        run: bash .claude/scripts/run-selfchecks.sh
+      - name: a fresh clone contains the kit
+        run: |
+          git clone --quiet . "$RUNNER_TEMP/clone"
+          test -f "$RUNNER_TEMP/clone/CLAUDE.md"
+          test -f "$RUNNER_TEMP/clone/.claude/settings.json"
+          test -f "$RUNNER_TEMP/clone/Context/me.md"
