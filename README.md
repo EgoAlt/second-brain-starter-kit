@@ -42,7 +42,7 @@ your-vault/
 
 **Hooks** are the mechanical backstop for rules that can be checked deterministically. `.claude/settings.json` wires each script to a tool event. A blocking guard denies a dangerous action before it happens (overwriting a daily note wholesale, creating a stray file in the vault root). A post-action detector reports a problem after a write lands (a note missing frontmatter). A non-blocking nudge injects a reminder the agent weighs but is not forced to obey (a page title mentioned in plain text that should be a wikilink). `.claude/scripts/README.md` classifies every shipped hook by what it actually guarantees.
 
-**Skills** are repeatable workflows written as markdown instruction files. The kit ships three worked examples: `ingest` (triage a file from the inbox into its home, discussing first), `author-page` (write a knowledge page to the page standard), and `wrap-up` (close a session so nothing is lost). A skill is the right tool when a task recurs and has steps worth pinning down.
+**Skills** are repeatable workflows written as markdown instruction files. The kit ships seven. Three are worked knowledge examples: `ingest` (triage a file from the inbox into its home, discussing first), `author-page` (write a knowledge page to the page standard), and `wrap-up` (close a session so nothing is lost). `setup-vault` runs the first-time setup interview, and `skill-finder`, `skill-health`, and `skill-maker` manage the skills themselves. A skill is the right tool when a task recurs and has steps worth pinning down.
 
 **The operator** is a scheduled run of the agent that maintains the vault without you: it checks for dead links, orphan pages, and frontmatter drift, fixes what is mechanical, and parks what needs a human decision in a backlog you read at your own pace. `.claude/operator/` holds the prompt, an example config, and the health check it runs.
 
@@ -57,7 +57,7 @@ The chain is: a rule states the invariant, a hook enforces it where a clean chec
 
 The guards fail open by design (a broken hook must never block legitimate work), which means a missing `python3` silently removes protection. `run-selfchecks.sh` checks for it.
 
-## Make it yours in five minutes
+## Make it yours in twenty minutes
 
 1. **Create a private repo from this kit, clone it, open it.**
    ```bash
